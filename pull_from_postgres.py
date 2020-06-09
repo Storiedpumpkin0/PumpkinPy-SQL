@@ -7,10 +7,9 @@
 # db name: sample_1
 # table name:  public.inventory
 # --------------------------------------------------------------------
-import os, sys
+import os, sys, psycopg2, secretspostgres, pandas
 path = os.getcwd()
 sys.path.insert(0,path)
-import psycopg2, secretspostgres
 
 server = 'localhost'
 database_name = 'postgres'
@@ -37,3 +36,4 @@ rows_in_table = cursor.fetchall()
 
 for row in rows_in_table:
         print(row)
+
