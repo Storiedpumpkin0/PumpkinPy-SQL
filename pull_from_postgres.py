@@ -41,10 +41,16 @@ print('as a dataframe: \n')
 print(postgreSQL_selection_query)
 
 #timestamp the data
-postgreSQL_selection_query['date'] = date + time
+# Below will add time along with date. The line after that only adds date
+#postgreSQL_selection_query['date'] = date + time
+postgreSQL_selection_query['date'] = date
 print('\n\n Now with a date column')
 print(postgreSQL_selection_query)
 postgreSQL_selection_query.to_csv('output\postgres_data.csv')
 
-with open('log\pull_from_postgres_completed_log.txt', 'a+') as file:
+with open('log\pull_from_postgres_log.txt', 'a+') as file:
     file.write("\ncompleted at: "+date+time)
+
+cnxn.commit()
+
+import push_into_SQLSvr
