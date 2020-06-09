@@ -1,0 +1,12 @@
+# This query will select the name, employee id, and days since last update for anyone who needs to update their computers. 
+
+SELECT  
+ staff.name, staff.employee_id, inventory_up_to_date, inventory.days_since_last_update
+
+FROM   
+ staff, inventory  
+
+WHERE
+ staff.assigned_pc = inventory.serial_no 
+AND  
+ inventory.up_to_date = 'no';  

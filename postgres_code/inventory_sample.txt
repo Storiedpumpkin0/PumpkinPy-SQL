@@ -1,0 +1,109 @@
+#create sample postgresql table 
+
+CREATE TABLE inventory ( 
+serial_no VARCHAR(5) PRIMARY KEY,
+function VARCHAR(15) NOT NULL,
+operating_system VARCHAR(10) NOT NULL,
+up_to_date VARCHAR(3) NOT NULL
+);
+
+#add data to sample table 
+INSERT INTO inventory (serial_no, function, operating_system, up_to_date)
+VALUES
+('0001', 'sales', 'Win10', 'yes'), 
+('0002', 'admin', 'Win10', 'no'), 
+('0003', 'helpdesk', 'Win7', 'yes'), 
+('0004', 'print_shop', 'WinXP', 'no'), 
+('0005', 'security_desk', 'Kali', 'yes')
+;
+
+#create staff table
+CREATE TABLE staff (
+name VARCHAR(25) NOT NULL, 
+employee_id VARCHAR(25) NOT NULL, 
+employee_function VARCHAR(25) NOT NULL, 
+assigned_pc VARCHAR(25) NOT NULL, 
+PRIMARY KEY (employee_id),
+CONSTRAINT fk_assigned_pc FOREIGN KEY (assigned_pc) REFERENCES inventory (serial_no)
+);
+
+#add data to staff table 
+INSERT INTO staff (name, employee_id, employee_function, assigned_pc) 
+VALUES
+('Tommy Sales', 'SALES-01', 'Salesman', '0001'), 
+('Wendy Bosslady', 'ADMIN-01', 'General Manager', '0002'),
+('Felix Fixit', 'HDT-01', 'HelpDesk-01', '0003'),
+('Randy Prints', 'PRNT-01', 'PrintMaster', '0004'), 
+('Wanda Wallet', 'SALES-02', 'Salesman', '0006'), 
+('Private Ryan', 'CSTS-01', 'CyberSecurity Tech', '0005'), 
+('Biggom Bux', 'SALES-03', 'Salesman', '0007')
+;
+
+# create an os_versions table
+CREATE TABLE os_versions (
+os_name VARCHAR(10) NOT NULL, 
+version_no VARCHAR(10) NOT NULL, 
+current VARCHAR(3) NOT NULL, 
+PRIMARY KEY (version_no)
+);
+
+# add data to os version table 
+INSERT INTO os_versions (os_name, version_no, current)
+VALUES
+('Win10', '1909', 'yes'), 
+('Win10', '1803', 'no'), 
+('Win10', '1609', 'no'), 
+('Win7', '7909', 'yes'),
+('winXP', '2606', 'yes'), 
+('Kali', '2020b', 'yes'),
+('Kali', '2019a', 'no')
+;
+
+# create a timeline table
+CREATE TABLE incident_timeline (
+attacks INT NOT NULL, 
+date DATE NOT NULL,
+PRIMARY KEY (date)
+);
+
+# add events to the timeline 
+INSERT INTO incident_timeline (attacks, date)
+VALUES
+(12, '2020-05-10'),
+(11, '2020-05-02'),
+(13, '2020-05-03'),
+(16, '2020-05-04'),
+(30, '2020-05-05'),
+(13, '2020-05-06'),
+(11, '2020-05-07'),
+(10, '2020-05-08'),
+(14, '2020-05-09')
+;
+
+# Creates a incident location table
+CREATE TABLE incident_location (
+report_id VARCHAR (5) NOT NULL, 
+building VARCHAR (10) NOT NULL, 
+city VARCHAR (25) NOT NULL, 
+state VARCHAR (15) NOT NULL,
+region VARCHAR (15) NOT NULL,
+country VARCHAR (10) NOT NULL,
+date DATE NOT NULL, 
+number_of_attacks INT NOT NULL, 
+PRIMARY KEY (report_id),
+CONSTRAINT fk_date FOREIGN KEY (date) REFERENCES incident_timeline (date)
+);
+
+# add data to the incident_location table
+INSERT INTO incident_location (report_id,building, city, state, region, country, date, number_of_attacks)
+VALUES
+('00001', 'TA-1', 'Atlanta', 'Georga', 'South', 'USA', '2020-05-10',12),
+('00002', 'TA-2', 'New York', 'New York', 'East', 'USA', '2020-05-02',11),
+('00003', 'TA-1', 'Atlanta', 'Georga', 'South', 'USA', '2020-05-03',13),
+('00004', 'TA-3', 'New York', 'New York', 'East', 'USA', '2020-05-04',16),
+('00005', 'TA-4', 'White Plains', 'New York', 'East', 'USA', '2020-05-05',30),
+('00006', 'TA-5', 'Little Rock', 'Arkansas', 'South', 'USA', '2020-05-06',13),
+('00007', 'TA-6', 'Santa Fe', 'New Mexico', 'South West', 'USA', '2020-05-07',11),
+('00008', 'TA-20', 'Port Au Prince', 'NA', 'Caribean', 'Haiti', '2020-05-08',10),
+('00009', 'TA-1', 'Atlanta', 'Georgia', 'South', 'USA', '2020-05-09',14)
+; 
