@@ -1,8 +1,0 @@
-,serial_no,function,operating_system,up_to_date,days_since_last_update,assigned_employee_id,current_version,date
-0,0005,security_desk,Kali,yes,0,CSTS-01,2020b, 09/06/2020 
-1,0007,sales,Win10,no,10,SALES-03,1803, 09/06/2020 
-2,0002,admin,Win10,no,5,ADMIN-01,1803, 09/06/2020 
-3,0006,sales,Win10,no,7,SALES-02,1803, 09/06/2020 
-4,0001,sales,Win10,yes,1,SALES-01,1909, 09/06/2020 
-5,0004,print_shop,WinXP,no,100,PRNT-01,2606, 09/06/2020 
-6,0003,helpdesk,Win7,yes,50,HDT-01,7909, 09/06/2020 

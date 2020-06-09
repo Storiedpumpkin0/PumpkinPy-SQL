@@ -54,3 +54,4 @@ with open('log\pull_from_postgres_log.txt', 'a+') as file:
 cnxn.commit()
 
 import push_into_SQLSvr
+import clean_output

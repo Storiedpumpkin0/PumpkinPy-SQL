@@ -4,7 +4,7 @@
 
 import os, shutil
 folder = 'output'
-for filename in os.listfir(folder):
+for filename in os.listdir(folder):
     file_path = os.path.join(folder, filename)
     try:
         if os.path.isfile(file_path) or os.path.islink(file_path):
