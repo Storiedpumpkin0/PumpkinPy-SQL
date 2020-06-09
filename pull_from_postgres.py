@@ -7,7 +7,8 @@
 # db name: sample_1
 # table name:  public.inventory
 # --------------------------------------------------------------------
-import os, sys, psycopg2, secretspostgres, pandas
+import os, sys, psycopg2, secretspostgres, pandas as pd, time
+from datetime import date
 path = os.getcwd()
 sys.path.insert(0,path)
 
@@ -19,6 +20,14 @@ table_name = 'public.inventory'
 username = secretspostgres.uname()
 password1 = secretspostgres.passwd()
 
+#get date to timestamp data
+today = date.today()
+# dd/mm/yy H:M:S
+date = today.strftime(' %d/%m/%Y ')
+time = time.strftime(' %H:%M:%S ')
+
+#print('DEBUG --- current Date and time: ', date, time )
+
 cnxn = psycopg2.connect(user=username,
                         password=password1,
                         host=server,
@@ -27,13 +36,15 @@ cnxn = psycopg2.connect(user=username,
 
 cursor = cnxn.cursor()
 
-postgreSQL_selection_query = 'SELECT * FROM ' + table_name
+postgreSQL_selection_query = pd.read_sql_query('SELECT * FROM ' + table_name, cnxn)
+print('as a dataframe: \n')
+print(postgreSQL_selection_query)
 
-cursor.execute(postgreSQL_selection_query)
+#timestamp the data
+postgreSQL_selection_query['date'] = date + time
+print('\n\n Now with a date column')
+print(postgreSQL_selection_query)
+postgreSQL_selection_query.to_csv('output\postgres_data.csv')
 
-print("Selecting rows from", table_name)
-rows_in_table = cursor.fetchall()
-
-for row in rows_in_table:
-        print(row)
-
+with open('log\pull_from_postgres_completed_log.txt', 'a+') as file:
+    file.write("\ncompleted at: "+date+time)
