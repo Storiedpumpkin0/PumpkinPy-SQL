@@ -7,16 +7,18 @@
 # db name: sample_1
 # table name:  public.inventory
 # --------------------------------------------------------------------
-
-import psycopg2, pandas, secrets
+import os, sys
+path = os.getcwd()
+sys.path.insert(0,path)
+import psycopg2, secretspostgres
 
 server = 'localhost'
 database_name = 'postgres'
 port_number = '5432'
 db_name = 'sample_1'
 table_name = 'public.inventory'
-username = secrets.uname()
-password1 = secrets.passwd()
+username = secretspostgres.uname()
+password1 = secretspostgres.passwd()
 
 cnxn = psycopg2.connect(user=username,
                         password=password1,
