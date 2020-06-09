@@ -2,5 +2,5 @@ secret*
 .idea
 __pycache__
 venv
-output\*
-log\*
+*log.txt
+*.csv
