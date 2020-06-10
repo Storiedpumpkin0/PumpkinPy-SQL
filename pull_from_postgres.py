@@ -46,6 +46,8 @@ print(postgreSQL_selection_query)
 postgreSQL_selection_query['date'] = date
 print('\n\n Now with a date column')
 print(postgreSQL_selection_query)
+
+# this will save the results to a csv file
 postgreSQL_selection_query.to_csv('output\postgres_data.csv')
 
 with open('log\pull_from_postgres_log.txt', 'a+') as file:
