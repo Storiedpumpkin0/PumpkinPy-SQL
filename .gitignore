@@ -4,3 +4,4 @@ __pycache__
 venv
 *log.txt
 *.csv
+connection_string.txt

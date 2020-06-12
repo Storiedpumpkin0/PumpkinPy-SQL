@@ -11,8 +11,8 @@ from datetime import date
 
 server_name = 'ANDREWSDELL\SQLEXPRESS'
 connection_string = 'Driver={SQL Server};Server=localhost\SQLEXPRESS;Database=master;Trusted_Connection=True;'
-database_name = 'dnd.'
-table_name = 'dbo.monsters'
+database_name = 'test.'
+table_name = 'dbo.from_postgres'
 code_location = 'microsoftSQL code\\test_sql.sql'
 
 # this is the query to grab the entire table
@@ -31,7 +31,7 @@ cursor = conn.cursor()
 # execute a query against the database and add timestamp to data
 query = pd.read_sql_query(contents, conn)
 query['date'] = date
-# print("\n-=-=-=-=-=-=-=-=-=-=-=- DEBUG: data as a data frame: \n", query, '\n =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=')
+print("\n-=-=-=-=-=-=-=-=-=-=-=- DEBUG: data as a data frame: \n", query, '\n =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=')
 
 # this will save the results to a csv file
 query.to_csv('output\SQLSvr'+database_name+table_name+'_data.csv')
