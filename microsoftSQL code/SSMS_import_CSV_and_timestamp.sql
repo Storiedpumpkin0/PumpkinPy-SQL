@@ -2,9 +2,7 @@
 -- Created on: 6/12/2020
 -- PURPOSE: This code is intended to import and timestamp data from a csv file
 
--- NOTES:  adapt colomns in the temp table and the historical table
---		   to fit individual purposes. It is recomended to have the same columns
---         between the two tables
+-- NOTES:  adapt colomns, file locations, and table names as necessary
 
 -- =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
@@ -63,10 +61,11 @@ SET
 
 
 -- Copy the csv table into the historical_data table
-INSERT INTO test.dbo.historical_data_sample_csv (name, age, eye_color, gender, snapshot_date, snapshot_time)
+INSERT INTO test.dbo.historical_data (name, age, eye_color, gender, snapshot_date, snapshot_time)
 	SELECT name, age, eye_color, gender, snapshot_date, snapshot_time
 	FROM test.dbo.temp
 
 -- show that the historical table is functioning
 SELECT * 
-FROM test.dbo.historical_data_sample_csv
+FROM test.dbo.historical_data
+ORDER BY snapshot_date, snapshot_time

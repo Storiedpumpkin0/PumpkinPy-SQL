@@ -56,3 +56,4 @@ INSERT INTO test.dbo.historical_data (name, age, eye_color, gender, snapshot_dat
 -- show that the historical table is functioning
 SELECT * 
 FROM test.dbo.historical_data
+ORDER BY snapshot_date, snapshot_time
